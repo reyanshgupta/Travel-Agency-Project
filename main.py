@@ -56,17 +56,15 @@ if choice == 1:
                 for a in record1:
                     for b in a:
                         if b == password:
-                            print("Welcome!")
+                            print("Welcome")
                             package_choice()
                             break
-                        else:
-                            print("Wrong Password, try again")
-                    break
+                        else
+                            break
+                else:
+                    print('Wrong Username, try again')
                 break
-            else:    
-                print('Wrong Username, try again')
-        break
-
+                
 
 elif choice == 2:
     print("Register-")
@@ -82,4 +80,4 @@ elif choice == 2:
 
 
 else:
-    print("Wrong choice")       
+    print("Wrong choice")      
