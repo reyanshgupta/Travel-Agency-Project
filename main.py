@@ -11,7 +11,7 @@ def package_choice():
     choice = input(("Do you have a budget for the Travel? (y/n): "))
     if choice == 'y' or choice == 'Y':
         budget = int(input("Enter your budget (INR): "))
-        print("Packages in your budget are: ")
+        print("Packages in your budget are: \n Package name \t Price \t Package Description")
         sql=("SELECT * FROM package_info WHERE package_price < %s")
         mycursor.execute(sql,(budget,))
         record = mycursor.fetchall()
@@ -21,7 +21,7 @@ def package_choice():
         sql1 = ("INSERT INTO package_choice VALUES(%s,%s)")
         values1 = (username,package_choice)
         mycursor.execute(sql1,values1)
-        print("Package Chosen: ",package_choice)
+        print("Thank you for booking the package:",package_choice, ". We Hope to see you soon!")    
         
     elif choice == 'n' or choice == 'N':
         print("Available Packages are: ")
@@ -33,10 +33,11 @@ def package_choice():
         sql1 = ("INSERT INTO package_choice VALUES(%s,%s)")
         values1 = (username,package_choice)
         mycursor.execute(sql1,values1)
-        print("Package Chosen: ",package_choice)
-       
+        print("Thank you for booking the package:",package_choice, ". We Hope to see you soon!")
+        
     else: 
         print('Wrong Choice')
+        
 
 mycursor = mydb.cursor()
 print("Welcome to Rocket Travel Agency!")
@@ -56,13 +57,15 @@ if choice == 1:
                 for a in record1:
                     for b in a:
                         if b == password:
-                            print("Welcome")
+                            print("Welcome ",username, "!")
                             package_choice()
-                            break
-                        else
-                            break
-                else:
-                    print('Wrong Username, try again')
+                            break 
+                        else:
+                            print("Wrong Password, Please try again.")   
+                            break                    
+                                
+            else:
+                print('Wrong Username, try again')
                 break
                 
 
