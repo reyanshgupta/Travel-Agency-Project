@@ -22,7 +22,7 @@ def package_choice():
         values1 = (username,package_choice)
         mycursor.execute(sql1,values1)
         print("Thank you for booking the package:",package_choice, ". We Hope to see you soon!")    
-        
+  
     elif choice == 'n' or choice == 'N':
         print("Available Packages are: ")
         mycursor.execute("SELECT * FROM package_info")
@@ -42,11 +42,12 @@ def package_choice():
 mycursor = mydb.cursor()
 print("Welcome to Rocket Travel Agency!")
 print("1. Login (already existing user)")
-print("2. Register(new user)")
+print("2. Register (new user)")
 choice = int(input("Select your choice: "))
 if choice == 1:
     username = input('Enter your Username: ')
     password = input('Enter password: ')
+    user_found = 0
     mycursor.execute("SELECT user_name FROM user_info")
     record = mycursor.fetchall()
     for x in record:
@@ -57,16 +58,15 @@ if choice == 1:
                 for a in record1:
                     for b in a:
                         if b == password:
-                            print("Welcome ",username, "!")
-                            package_choice()
-                            break 
-                        else:
-                            print("Wrong Password, Please try again.")   
-                            break                    
-                                
-            else:
-                print('Wrong Username, try again')
-                break
+                            user_found = 1
+                            if user_found == 1: 
+                                print("Welcome ",username, "!")
+                                package_choice()
+                            else: 
+                                break
+                        elif user_found==0:
+                            print("Wrong Password/Username, Please try again.")   
+                            break                
                 
 
 elif choice == 2:
